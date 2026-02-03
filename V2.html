@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Valentine 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    
+    <style>
+        :root {
+            --primary: #ff4757; /* Vibrant Red/Pink */
+            --secondary: #ff6b81; /* Soft Pink */
+            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Animated Gradient Background */
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffd1ff, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+            position: relative;
+        }
+
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+
+        /* Floating Background Particles */
+        .floating-emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.6;
+            animation: floatUp linear infinite;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+        }
+
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 2px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            width: 90%;
+            z-index: 10;
+            position: relative;
+            transform: scale(1);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+
+        .gif-wrapper {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+
+        .gif-wrapper img {
+            width: 160px;
+            height: auto;
+            border-radius: 15px;
+            /* Cute floating animation for the image */
+            animation: floatImg 3s ease-in-out infinite;
+        }
+
+
+        @keyframes floatImg {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+            line-height: 1.2;
+        }
+
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            min-height: 60px; /* Prevents layout shift */
+            align-items: center;
+        }
+
+
+        button {
+            font-family: 'Fredoka One', cursive;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+
+        /* The "Yes" Button - Candy Style */
+        #yes-btn {
+            background: linear-gradient(to bottom, #ff6b81, #ff4757);
+            color: white;
+            box-shadow: 0 5px 0 #d63031, 0 10px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+
+        #yes-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 #d63031, 0 0px 0px rgba(0,0,0,0.2);
+        }
+
+
+        /* The "No" Button */
+        #no-btn {
+            background: #dfe6e9;
+            color: #636e72;
+            box-shadow: 0 5px 0 #b2bec3, 0 10px 10px rgba(0,0,0,0.1);
+        }
+
+
+        /* Helper class for fixed positioning when running away */
+        .fixed-pos {
+            position: fixed !important;
+            z-index: 1000;
+        }
+
+
+        /* Mobile specific adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .glass-card { padding: 30px 20px; }
+            .gif-wrapper img { width: 130px; }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="background-effects"></div>
+
+
+    <div class="glass-card">
+        <div class="gif-wrapper">
+            <img id="main-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGIwZHIxNHRjdjZ6dm14c2lxM3V4eW42dXlnYnc0NHozZ2ZwYmZubCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif" alt="Cute Bear">
+        </div>
+
+
+        <h1 id="main-text">Will you be my Valentine?</h1>
+
+
+        <div class="btn-container">
+            <button id="yes-btn">Yes</button>
+            <button id="no-btn">No</button>
+        </div>
+    </div>
+
+
+    <audio id="pop-sound" src="data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWgAAAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwT3AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//uQZAAABHpJ0QA0gAIAAA0gAAABF4G1AA8wAIAAA0gAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABSU2NoAAAAAAAAAAAAAAAAAAADUABkAAr/40D0/8z/4j/yP/K/+D/5f/c/9n/yv/Q/8v/2f/h/+P/5f/o/+z/8P/z//j//v8AAAAAAAAAAAAAAAAAAAAAAABpbmZvAAAADwAAABIAAAB2AAAEHg8QFRkaHB8iJSYrLTAyNjc6PT9BQkVHSUxOUVJTVlhcXV9iZGVnamxtcHN2eHl8foEA//uQZAAP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAEAA"></audio>
+
+
+    <script>
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const mainText = document.getElementById('main-text');
+        const mainGif = document.getElementById('main-gif');
+        const glassCard = document.querySelector('.glass-card');
+        const jsConfetti = new JSConfetti();
+        const popSound = document.getElementById('pop-sound');
+
+
+        // Logic state
+        let noCount = 0;
+        let yesScale = 1;
+
+
+        // 1. Generate Floating Emojis in Background
+        function createFloatingEmojis() {
+            const container = document.getElementById('background-effects');
+            const emojis = ['❤️', '💖', '🧸', '🌸', '💌', '🧁'];
+            
+            // Create 20 floating items
+            for(let i=0; i<20; i++) {
+                const el = document.createElement('div');
+                el.classList.add('floating-emoji');
+                el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.animationDuration = (Math.random() * 5 + 10) + 's'; // 10-15s float
+                el.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(el);
+            }
+        }
+        createFloatingEmojis();
+
+
+        // 2. The "Runaway" Logic
+        const moveNoButton = () => {
+            // Play a tiny pop sound (if browser allows)
+            try { popSound.currentTime = 0; popSound.play(); } catch(e){}
+
+
+            // Get viewport boundaries
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            
+            // Button Size
+            const btnW = noBtn.offsetWidth;
+            const btnH = noBtn.offsetHeight;
+
+
+            // Ensure "No" button separates from flow to move freely
+            if(noBtn.style.position !== 'fixed') {
+                noBtn.style.position = 'fixed';
+            }
+
+
+            // Calculate new position
+            // Keep padding of 40px from edges
+            const maxW = w - btnW - 40;
+            const maxH = h - btnH - 40;
+
+
+            const randomX = Math.random() * maxW + 20;
+            const randomY = Math.random() * maxH + 20;
+
+
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+
+
+            // Escalation: Grow Yes Button
+            noCount++;
+            if(noCount < 6) { // Cap the growth so it doesn't break the layout too much
+                yesScale += 0.15;
+                yesBtn.style.transform = `scale(${yesScale})`;
+                
+                // Add cheeky text changes to No button
+                const noTexts = ["No", "Are you sure?", "Really?", "Think again!", "Last chance!"];
+                if(noCount < noTexts.length) {
+                    noBtn.innerText = noTexts[noCount];
+                }
+            }
+        };
+
+
+        // Event Listeners for the "No" Button
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Stop click
+            moveNoButton();
+        });
+
+
+        // 3. The "Yes" Click Logic
+        yesBtn.addEventListener('click', () => {
+            // Explode Confetti
+            jsConfetti.addConfetti({
+                emojis: ['❤️', '💍', '✨', '🌸'],
+                emojiSize: 70,
+                confettiNumber: 150,
+            });
+
+
+            // Update UI
+            mainText.innerHTML = "YAY! I knew it! <br> I love you! ❤️";
+            mainGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif"; // Hugging bears
+            
+            // Remove No button
+            noBtn.style.display = 'none';
+            
+            // Reset Yes button style
+            yesBtn.style.transform = 'scale(1)';
+            yesBtn.innerText = "Let's Go! 🥰";
+            
+            // Add a pulse effect to the card
+            glassCard.style.animation = "pulse 1s infinite";
+        });
+
+
+    </script>
+</body>
+</html>
+
